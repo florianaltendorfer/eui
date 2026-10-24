@@ -20,7 +20,11 @@ import {
   useEuiPaddingCSS,
   _EuiThemeBreakpoint,
 } from '../../../global_styling';
-import { useEuiTheme, useIsWithinBreakpoints } from '../../../services';
+import {
+  useEuiTheme,
+  useEuiMemoizedStyles,
+  useIsWithinBreakpoints,
+} from '../../../services';
 import { euiPageSidebarStyles } from './page_sidebar.styles';
 
 export interface EuiPageSidebarProps
@@ -70,7 +74,7 @@ export const EuiPageSidebar: FunctionComponent<EuiPageSidebarProps> = ({
   ...rest
 }) => {
   const themeContext = useEuiTheme();
-  const styles = euiPageSidebarStyles(themeContext);
+  const styles = useEuiMemoizedStyles(euiPageSidebarStyles);
   const isResponding = useIsWithinBreakpoints(responsive);
 
   const cssStyles = [

@@ -9,7 +9,7 @@
 import React, { FunctionComponent, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CommonProps } from '../../common';
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import {
   useEuiPaddingCSS,
   EuiPaddingSize,
@@ -74,8 +74,7 @@ export const EuiPageHeader: FunctionComponent<EuiPageHeaderProps> = ({
   rightSideGroupProps,
   ...rest
 }) => {
-  const useTheme = useEuiTheme();
-  const styles = euiPageHeaderStyles(useTheme);
+  const styles = useEuiMemoizedStyles(euiPageHeaderStyles);
   const inlinePadding = useEuiPaddingCSS('horizontal');
   const backgroundColor = useEuiBackgroundColorCSS()[color];
   const cssStyles = [

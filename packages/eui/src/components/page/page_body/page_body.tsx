@@ -20,6 +20,7 @@ import {
 } from '../_restrict_width';
 import { EuiPanel, EuiPanelProps } from '../../panel';
 import { useEuiPaddingCSS, EuiPaddingSize } from '../../../global_styling';
+import { useEuiMemoizedStyles } from '../../../services';
 import { euiPageBodyStyles } from './page_body.styles';
 
 type ComponentTypes = keyof JSX.IntrinsicElements | ComponentType<any>;
@@ -67,7 +68,7 @@ export const EuiPageBody = <T extends ComponentTypes>({
 
   // Shared
   const classes = classNames('euiPageBody', className);
-  const styles = euiPageBodyStyles();
+  const styles = useEuiMemoizedStyles(euiPageBodyStyles);
   const cssStyles = [styles.euiPageBody, restrictWidth && styles.restrictWidth];
 
   // Panelled

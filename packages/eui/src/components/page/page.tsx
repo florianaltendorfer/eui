@@ -19,7 +19,7 @@ import {
   useEuiBackgroundColorCSS,
 } from '../../global_styling';
 import { euiPageStyles } from './page.styles';
-import { useEuiTheme } from '../../services';
+import { useEuiMemoizedStyles } from '../../services';
 
 export interface EuiPageProps
   extends CommonProps,
@@ -66,8 +66,7 @@ export const EuiPage: FunctionComponent<EuiPageProps> = ({
     rest?.style
   );
 
-  const euiTheme = useEuiTheme();
-  const styles = euiPageStyles(euiTheme);
+  const styles = useEuiMemoizedStyles(euiPageStyles);
   const padding = useEuiPaddingCSS()[paddingSize as EuiPaddingSize];
   const backgroundColor = useEuiBackgroundColorCSS()[color];
 

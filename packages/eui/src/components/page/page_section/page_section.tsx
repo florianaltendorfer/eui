@@ -20,7 +20,7 @@ import {
 } from '../_restrict_width';
 import { _EuiPageBottomBorder } from '../_bottom_border';
 
-import { useEuiTheme } from '../../../services';
+import { useEuiMemoizedStyles } from '../../../services';
 import {
   ALIGNMENTS,
   euiPageSectionContentStyles,
@@ -82,8 +82,7 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
     contentProps?.style
   );
 
-  const useTheme = useEuiTheme();
-  const styles = euiPageSectionStyles(useTheme);
+  const styles = useEuiMemoizedStyles(euiPageSectionStyles);
   const inlinePadding = useEuiPaddingCSS('horizontal');
   const blockPadding = useEuiPaddingCSS('vertical');
   const colors = useEuiBackgroundColorCSS();
@@ -97,7 +96,7 @@ export const EuiPageSection: FunctionComponent<EuiPageSectionProps> = ({
     colors[color],
   ];
 
-  const contentStyles = euiPageSectionContentStyles();
+  const contentStyles = useEuiMemoizedStyles(euiPageSectionContentStyles);
 
   const cssContentStyles = [
     contentStyles.euiPageSection__content,
